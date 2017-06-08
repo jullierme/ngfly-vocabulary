@@ -1,5 +1,5 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, ElementRef, HostBinding, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {fallIn, moveIn} from '../router.animations';
 import {AngularFireAuth} from 'angularfire2/auth';
 
@@ -9,26 +9,47 @@ import {AngularFireAuth} from 'angularfire2/auth';
     styleUrls: ['./email.component.css'],
     animations: [moveIn(), fallIn()]
 })
-export class EmailComponent implements OnInit {
+export class EmailComponent implements OnInit, OnDestroy {
     @HostBinding('@moveIn') get moveIn() {
         return '';
     }
 
+    @ViewChild('iPassoword') iPassoword: ElementRef;
+
     state = '';
     error: any;
     user: any = {};
+    private subscribeParams: any;
+    private subscribeHome: any;
 
-    ngOnInit() {
+    constructor(public afAuth: AngularFireAuth, private router: Router,
+                private activatedRoute: ActivatedRoute,
+                private elRef: ElementRef) {
     }
 
-    constructor(public afAuth: AngularFireAuth, private router: Router) {
-        this.afAuth.authState.subscribe(auth => {
+    ngOnInit() {
+        this.setEmailDefault();
+
+        this.subscribeHome = this.afAuth.authState.subscribe(auth => {
             if (auth) {
                 this.router.navigateByUrl('/members');
             }
         });
     }
 
+    ngOnDestroy() {
+        this.subscribeParams.unsubscribe();
+        this.subscribeHome.unsubscribe();
+    }
+
+    setEmailDefault() {
+        this.subscribeParams = this.activatedRoute.queryParams.subscribe(params => {
+            if (params['email']) {
+                this.user.email = params['email'];
+                this.iPassoword.nativeElement.focus();
+            }
+        });
+    }
 
     onSubmit(formData) {
         if (formData.valid) {

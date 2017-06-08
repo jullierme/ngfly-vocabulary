@@ -12,10 +12,12 @@ import {EmailComponent} from './email/email.component';
 import {SignupComponent} from './signup/signup.component';
 import {MembersComponent} from './members/members.component';
 
-import {AuthGuard} from './auth.service';
+import {AuthGuard} from './auth.guard';
 import {routes} from './app.routes';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
+import { GroupComponent } from './group/group.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +25,9 @@ import {FormsModule} from '@angular/forms';
         LoginComponent,
         EmailComponent,
         SignupComponent,
-        MembersComponent
+        MembersComponent,
+        GroupComponent,
+        ResetPasswordComponent
     ],
     imports: [
         BrowserModule,

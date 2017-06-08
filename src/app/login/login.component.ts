@@ -31,32 +31,42 @@ export class LoginComponent implements OnInit {
     }
 
     loginFb() {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(
-            (success) => {
-                this.router.navigate(['/members']);
-            }).catch(
-            (err) => {
-                this.error = err;
-            })
+        this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+            .then(success => this.signInWithPopupResult(success))
+            .catch(error => this.signInWithPopupFault(error));
     }
 
     loginGoogle() {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(
-            (success) => {
-                this.router.navigate(['/members']);
-            }).catch(
-            (err) => {
-                this.error = err;
-            })
+        this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+            .then(success => this.signInWithPopupResult(success))
+            .catch(error => this.signInWithPopupFault(error));
     }
 
     loginGithub() {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider()).then(
-            (success) => {
-                this.router.navigate(['/members']);
-            }).catch(
-            (err) => {
-                this.error = err;
-            })
+        this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider())
+            .then(success => this.signInWithPopupResult(success))
+            .catch(error => this.signInWithPopupFault(error));
+    }
+
+    signInWithPopupResult(success) {
+        this.router.navigate(['/members']);
+    }
+
+    signInWithPopupFault(error) {
+        /*const currentUser = this.afAuth.auth.currentUser;
+         const credential = error['credential'];
+
+         this.afAuth.auth.currentUser.linkWithCredential(credential)
+         .then(function (user) {
+         console.log('Account linking success', user);
+         }, function (err) {
+         console.log('Account linking error', err);
+         });
+         */
+        this.error = error;
+    }
+
+    resetPassword(email: string): firebase.Promise<any> {
+        return this.afAuth.auth.sendPasswordResetEmail(email);
     }
 }

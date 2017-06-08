@@ -21,7 +21,9 @@
                [(ngModel)]="user.password"
                name="password"
                class="txt"
-               required>
+               required
+               #iPassoword
+               id="iPassoword">
 
         <button type="submit"
                 [disabled]="!formData.valid"
@@ -30,5 +32,11 @@
         </button>
 
         <a routerLink="/signup" class="alc">Don't have an account?</a>
+
+        <a routerLink="/reset-password"
+           routerLinkActive="active"
+           class="alc">
+            Forgot password?
+        </a>
     </form>
 </div>
