@@ -49,4 +49,14 @@ export class LoginComponent implements OnInit {
         this.error = err;
       })
   }
+
+  loginGithub() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider()).then(
+      (success) => {
+        this.router.navigate(['/members']);
+      }).catch(
+      (err) => {
+        this.error = err;
+      })
+  }
 }

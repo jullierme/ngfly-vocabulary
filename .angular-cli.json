@@ -19,9 +19,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/foundation-sites/dist/css/foundation-flex.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/web-animations-js/web-animations.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

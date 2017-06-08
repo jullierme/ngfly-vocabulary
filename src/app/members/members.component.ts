@@ -19,6 +19,27 @@ export class MembersComponent implements OnInit {
   state = '';
 
   constructor(public afAuth: AngularFireAuth, private router: Router) {
+    this.afAuth.authState.subscribe(auth => {
+      if (auth) {
+        this.setNameAndEmail(auth);
+      }
+    });
+  }
+
+  setNameAndEmail(auth) {
+    if (!auth.email) {
+      const authUser = Object.keys(window.localStorage).filter(item => {
+        return item.startsWith('firebase:authUser')
+      });
+      const storage = JSON.parse(localStorage.getItem(authUser[0]));
+      const providerData = storage['providerData'][0];
+
+      this.email = providerData['email'];
+    } else {
+      this.email = auth.email;
+    }
+
+    this.name = auth.displayName;
   }
 
   logout() {
@@ -27,11 +48,6 @@ export class MembersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.afAuth.authState.subscribe(auth => {
-      if (auth) {
-        this.name = auth.displayName;
-        this.email = auth.email;
-      }
-    });
+
   }
 }
