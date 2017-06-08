@@ -1,16 +1,16 @@
 <div class="form-container" id="toolbar">
-  <header [@fallIn]="state">
-    <button (click)="logout()"
-            class="basic-btn">
-      Logout
-    </button>
-  </header>
+    <header [@fallIn]="state">
+        <button (click)="logout()"
+                class="basic-btn">
+            Logout
+        </button>
+    </header>
 
-  <div id="page" [@moveInLeft]="state">
-    <h2>Hey {{ name }}!</h2>
+    <div id="page" [@moveInLeft]="state">
+        <h2>Hey {{ name }}!</h2>
 
-    <h4>your email is {{email}}</h4>
-    <img src="../../assets/images/filler.png"/>
-  </div>
+        <h4>your email is {{email}}</h4>
+        <img src="../../assets/images/filler.png"/>
+    </div>
 
 </div>

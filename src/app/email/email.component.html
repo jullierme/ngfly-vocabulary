@@ -1,34 +1,34 @@
 <div class="form-container">
-  <a routerLink="/login" id="goback">Go back</a>
+    <a routerLink="/login" id="goback">Go back</a>
 
-  <h2>Custom Login</h2>
+    <h2>Custom Login</h2>
 
-  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+    <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
 
-  <form #formData="ngForm"
-        (ngSubmit)="onSubmit(formData)">
+    <form #formData="ngForm"
+          (ngSubmit)="onSubmit(formData)">
 
-    <input type="email"
-           email
-           placeholder="Email address.."
-           [(ngModel)]="user.email"
-           name="email"
-           class="txt"
-           required>
+        <input type="email"
+               email
+               placeholder="Email address.."
+               [(ngModel)]="user.email"
+               name="email"
+               class="txt"
+               required>
 
-    <input type="password"
-           placeholder="Password"
-           [(ngModel)]="user.password"
-           name="password"
-           class="txt"
-           required>
+        <input type="password"
+               placeholder="Password"
+               [(ngModel)]="user.password"
+               name="password"
+               class="txt"
+               required>
 
-    <button type="submit"
-            [disabled]="!formData.valid"
-            class="basic-btn">
-      Log in
-    </button>
+        <button type="submit"
+                [disabled]="!formData.valid"
+                class="basic-btn">
+            Log in
+        </button>
 
-    <a routerLink="/signup" class="alc">Don't have an account?</a>
-  </form>
+        <a routerLink="/signup" class="alc">Don't have an account?</a>
+    </form>
 </div>

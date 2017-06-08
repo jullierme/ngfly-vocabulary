@@ -1,54 +1,56 @@
 #lock {
-  width:40%;
-  margin: 0.5em auto 1.5em auto;
-  display:block;
+    width: 40%;
+    margin: 0.5em auto 1.5em auto;
+    display: block;
 }
 
 #fb {
-  background:#3B5998 url('../../assets/images/facebook.svg') no-repeat 14px 6px;
-  background-size: 47px;
-  color:#fff;
+    background: #3B5998 url('../../assets/images/facebook.svg') no-repeat 14px 6px;
+    background-size: 47px;
+    color: #fff;
 }
 
 #google {
-  border: 1px solid #95989A;
-  background: #fff  url('../../assets/images/google.svg') no-repeat 25px;
-  background-size: 25px;
+    border: 1px solid #95989A;
+    background: #fff url('../../assets/images/google.svg') no-repeat 25px;
+    background-size: 25px;
 }
 
 #email {
-  background: #ECECEC  url('../../assets/images/email.svg') no-repeat 25px;
-  background-size: 25px;
+    background: #ECECEC url('../../assets/images/email.svg') no-repeat 25px;
+    background-size: 25px;
 }
 
 #github {
-  border: 1px solid #95989A;
-  background: #444  url('../../assets/images/github.svg') no-repeat 25px;
-  background-size: 25px;
-  color: #FFF;
+    border: 1px solid #95989A;
+    background: #444 url('../../assets/images/github.svg') no-repeat 25px;
+    background-size: 25px;
+    color: #FFF;
 }
 
 @media (max-width: 600px) {
-  #page {
-    padding:1em;
-  }
-  #toolbar {
-    width:90%;
-    margin-left: -45%;
-  }
-  #fb {
-    background:#3B5998;
-  }
+    #page {
+        padding: 1em;
+    }
 
-  #google {
-    background: #fff;
-  }
+    #toolbar {
+        width: 90%;
+        margin-left: -45%;
+    }
 
-  #github {
-    background: #444;
-  }
+    #fb {
+        background: #3B5998;
+    }
 
-  #email {
-    background: #ECECEC;
-  }
+    #google {
+        background: #fff;
+    }
+
+    #github {
+        background: #444;
+    }
+
+    #email {
+        background: #ECECEC;
+    }
 }

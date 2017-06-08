@@ -1,35 +1,35 @@
 <div class="form-container">
-  <img src="../../assets/images/lock.svg" id="lock">
+    <img src="../../assets/images/lock.svg" id="lock">
 
-  <span class="error" *ngIf="error">{{ error }}</span>
+    <span class="error" *ngIf="error">{{ error }}</span>
 
-  <button (click)="loginFb()"
-          id="fb">
-    Login With Facebook
-  </button>
+    <button (click)="loginFb()"
+            id="fb">
+        Login With Facebook
+    </button>
 
-  <br>
+    <br>
 
-  <button (click)="loginGoogle()"
-          id="google">
-    Login With Google
-  </button>
+    <button (click)="loginGoogle()"
+            id="google">
+        Login With Google
+    </button>
 
-  <br>
+    <br>
 
-  <button (click)="loginGithub()"
-          id="github">
-    Login With GitHub
-  </button>
+    <button (click)="loginGithub()"
+            id="github">
+        Login With GitHub
+    </button>
 
-  <button routerLink="/login-email"
-          id="email">
-    Email
-  </button>
+    <button routerLink="/login-email"
+            id="email">
+        Email
+    </button>
 
-  <a routerLink="/signup"
-     routerLinkActive="active"
-     class="alc">
-    No account? <strong>Create one here</strong>
-  </a>
+    <a routerLink="/signup"
+       routerLinkActive="active"
+       class="alc">
+        No account? <strong>Create one here</strong>
+    </a>
 </div>
