@@ -1,7 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {fallIn, moveIn} from '../router.animations';
-import {AngularFireAuth} from 'angularfire2/auth';
+import {fallIn, moveIn} from '../../router/router.animations';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
     selector: 'app-signup',
@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
     ngOnInit() {
     }
 
-    constructor(public af: AngularFireAuth, private router: Router) {
+    constructor(public authService: AuthService, private router: Router) {
     }
 
     onSubmit(formData) {
@@ -32,13 +32,9 @@ export class SignupComponent implements OnInit {
                 return;
             }
 
-            this.af.auth.createUserWithEmailAndPassword(this.user.email, this.user.password).then(
-                (success) => {
-                    this.router.navigate(['/login'])
-                }).catch(
-                (err) => {
-                    this.error = err;
-                })
+            this.authService.createUserWithEmailAndPassword(this.user.email, this.user.password)
+                .then(() => this.router.navigate(['/login']))
+                .catch((err) => this.error = err);
         }
     }
 }

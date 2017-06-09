@@ -1,9 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {moveIn} from '../router.animations';
-import {AngularFireAuth} from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-import {Observable} from 'rxjs/Observable';
+import {moveIn} from '../../router/router.animations';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -17,39 +15,39 @@ export class LoginComponent implements OnInit {
     }
 
     error: any;
-    user: Observable<firebase.User>;
 
-    constructor(public afAuth: AngularFireAuth, private router: Router) {
+    constructor(public authService: AuthService, private router: Router) {
     }
 
     ngOnInit() {
-        this.afAuth.authState.subscribe(auth => {
-            if (auth) {
-                this.router.navigateByUrl('/members');
-            }
-        });
+        this.authService.angularFireAuth.authState
+            .subscribe(auth => {
+                if (auth) {
+                    this.router.navigateByUrl('/home');
+                }
+            });
     }
 
     loginFb() {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        this.authService.loginFacebook()
             .then(success => this.signInWithPopupResult(success))
             .catch(error => this.signInWithPopupFault(error));
     }
 
     loginGoogle() {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        this.authService.loginGoogle()
             .then(success => this.signInWithPopupResult(success))
             .catch(error => this.signInWithPopupFault(error));
     }
 
     loginGithub() {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider())
+        this.authService.loginGithub()
             .then(success => this.signInWithPopupResult(success))
             .catch(error => this.signInWithPopupFault(error));
     }
 
     signInWithPopupResult(success) {
-        this.router.navigate(['/members']);
+        this.router.navigate(['/home']);
     }
 
     signInWithPopupFault(error) {
@@ -64,9 +62,5 @@ export class LoginComponent implements OnInit {
          });
          */
         this.error = error;
-    }
-
-    resetPassword(email: string): firebase.Promise<any> {
-        return this.afAuth.auth.sendPasswordResetEmail(email);
     }
 }

@@ -7,25 +7,26 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {environment} from '../environments/environment';
-import {LoginComponent} from './login/login.component';
-import {EmailComponent} from './email/email.component';
-import {SignupComponent} from './signup/signup.component';
-import {MembersComponent} from './members/members.component';
+import {LoginComponent} from './view/login/login.component';
+import {LoginEmailComponent} from './view/login-email/login-email.component';
+import {SignupComponent} from './view/signup/signup.component';
+import {HomeComponent} from './view/home/home.component';
 
-import {AuthGuard} from './auth.guard';
-import {routes} from './app.routes';
+import {AuthGuard} from './guard/auth.guard';
+import {routes} from './router/app.routes';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
-import { GroupComponent } from './group/group.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {GroupComponent} from './view/group/group.component';
+import {ResetPasswordComponent} from './view/reset-password/reset-password.component';
+import {AuthService} from './service/auth.service';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        EmailComponent,
+        LoginEmailComponent,
         SignupComponent,
-        MembersComponent,
+        HomeComponent,
         GroupComponent,
         ResetPasswordComponent
     ],
@@ -38,7 +39,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
         AngularFireAuthModule,
         routes
     ],
-    providers: [AuthGuard],
+    providers: [
+        AuthGuard,
+        AuthService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

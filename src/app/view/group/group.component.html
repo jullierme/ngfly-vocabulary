@@ -1,0 +1,33 @@
+<div class="form-container" id="toolbar">
+    <header [@fallIn]="state">
+        Groups
+    </header>
+
+    <div id="page" [@moveInLeft]="state">
+        <form #formData="ngForm"
+              (ngSubmit)="onSubmit(formData)">
+
+            <input placeholder="Group name..."
+                   [(ngModel)]="group"
+                   name="group"
+                   class="txt"
+                   required
+                   maxlength="50"
+                   autofocus>
+
+            <button type="submit"
+                    [disabled]="!formData.valid"
+                    class="basic-btn">
+                Add
+            </button>
+
+        </form>
+
+        <ul>
+            <li *ngFor="let item of items | async">
+                {{ item.name }}
+            </li>
+        </ul>
+    </div>
+
+</div>

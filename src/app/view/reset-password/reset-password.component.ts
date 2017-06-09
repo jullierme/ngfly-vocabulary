@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, HostBinding, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {fallIn, moveIn} from '../router.animations';
-import {AngularFireAuth} from 'angularfire2/auth';
+import {fallIn, moveIn} from '../../router/router.animations';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
     selector: 'app-reset-password',
@@ -20,6 +20,9 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
     error: any;
     user: any = {};
 
+    constructor(public authService: AuthService, private router: Router) {
+    }
+
     ngOnInit() {
     }
 
@@ -27,24 +30,18 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
         this.iPassoword.nativeElement.focus();
     }
 
-    constructor(public af: AngularFireAuth, private router: Router) {
-    }
-
     onSubmit(formData) {
         if (formData.valid) {
 
-            this.af.auth.sendPasswordResetEmail(this.user.email).then(
-                (success) => {
+            this.authService.sendPasswordResetEmail(this.user.email).then(
+                () => {
                     this.error = 'We just sent you a reset link to your email';
 
                     setTimeout(() => {
                         this.router.navigate(['/login-email'], {queryParams: {email: this.user.email}});
                     }, 5000);
 
-                }).catch(
-                (err) => {
-                    this.error = err;
-                })
+                }).catch((err) => this.error = err)
         }
     }
 }
