@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="toolbar" [@fallIn]="state">
+        <button routerLink="/home"
+                class="btn-big basic-btn">
+            Home
+        </button>
+    </div>
+
+    <div id="page" [@moveInLeft]="state">
+        <form #formData="ngForm"
+              (ngSubmit)="onSubmit(formData)">
+
+            <div class="row">
+                <div class="medium-6 columns">
+                    <label>Group *
+                        <select ngModel
+                                name="dictionaryId"
+                                (change)="setWordList($event.currentTarget.value)"
+                                required>
+                            <option *ngFor="let item of firebasedbService.dictionary | async"
+                                    value="{{item.$key}}">
+                                {{item.name}}
+                            </option>
+                        </select>
+                    </label>
+                </div>
+                <div class="medium-6 columns">
+                    <button type="submit"
+                            [disabled]="!formData.valid"
+                            class="btn-big basic-btn">
+                        Add
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="medium-4 columns">
+                    <label>Word *
+                        <input placeholder="Word"
+                               ngModel
+                               name="word"
+                               class="txt"
+                               required
+                               autofocus>
+                    </label>
+                </div>
+
+                <div class="medium-4 columns">
+                    <label>Sound *
+                        <input placeholder="Sound"
+                               ngModel
+                               name="sound"
+                               class="txt"
+                               required>
+                    </label>
+                </div>
+
+                <div class="medium-4 columns">
+                    <label>Translation *
+                        <input placeholder="Translation"
+                               ngModel
+                               name="translate"
+                               class="txt"
+                               required>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 columns">
+                    <label>Fhrase
+                        <input placeholder="Fhrase"
+                               class="txt"
+                               #iFrase>
+                    </label>
+                </div>
+                <div class="medium-6 columns">
+                    <button type="button"
+                            [disabled]="!iFrase.value"
+                            class="btn-big basic-btn"
+                            (click)="addFhrase(iFrase.value)">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <table>
+            <tr>
+                <th>Word</th>
+                <th>Sound</th>
+                <th>Translation</th>
+            </tr>
+            <tr *ngFor="let item of wordList | async">
+                <td>{{ item.word }}</td>
+                <td>{{ item.sound }}</td>
+                <td>{{ item.translate }}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>

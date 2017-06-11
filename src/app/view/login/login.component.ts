@@ -2,11 +2,12 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {moveIn} from '../../router/router.animations';
 import {AuthService} from '../../service/auth.service';
+import * as firebase from 'firebase/app';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
+    styleUrls: ['./login.component.scss'],
     animations: [moveIn()]
 })
 export class LoginComponent implements OnInit {
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
             });
     }
 
-    loginFb() {
+    loginFacebook() {
         this.authService.loginFacebook()
             .then(success => this.signInWithPopupResult(success))
             .catch(error => this.signInWithPopupFault(error));
@@ -47,20 +48,11 @@ export class LoginComponent implements OnInit {
     }
 
     signInWithPopupResult(success) {
+        this.authService.accessToken = success.credential.accessToken;
         this.router.navigate(['/home']);
     }
 
     signInWithPopupFault(error) {
-        /*const currentUser = this.afAuth.auth.currentUser;
-         const credential = error['credential'];
-
-         this.afAuth.auth.currentUser.linkWithCredential(credential)
-         .then(function (user) {
-         console.log('Account linking success', user);
-         }, function (err) {
-         console.log('Account linking error', err);
-         });
-         */
         this.error = error;
     }
 }

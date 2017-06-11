@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {Component, HostBinding, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
 import {fallIn, moveIn, moveInLeft} from '../../router/router.animations';
 import {AuthService} from '../../service/auth.service';
@@ -6,14 +6,14 @@ import {AuthService} from '../../service/auth.service';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
-    animations: [moveIn(), fallIn(), moveInLeft()]
+    styleUrls: ['./home.component.scss'],
+    animations: [moveIn(), fallIn(), moveInLeft()],
+    encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
     @HostBinding('@moveIn') get moveIn() {
         return '';
     }
-
     name = '';
     email = '';
     state = '';
@@ -22,10 +22,16 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.setNameAndEmail(this.authService.user);
+        this.authService.angularFireAuth.authState
+            .subscribe(auth => {
+                this.setNameAndEmail(auth);
+            });
     }
 
     setNameAndEmail(user) {
+        if (!user) {
+            return;
+        }
         if (!user.email) {
             const authUser = Object.keys(window.localStorage).filter(item => {
                 return item.startsWith('firebase:authUser')

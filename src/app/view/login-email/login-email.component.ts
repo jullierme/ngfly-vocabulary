@@ -6,7 +6,7 @@ import {AuthService} from '../../service/auth.service';
 @Component({
     selector: 'app-email',
     templateUrl: './login-email.component.html',
-    styleUrls: ['./login-email.component.css'],
+    styleUrls: ['./login-email.component.scss'],
     animations: [moveIn(), fallIn()]
 })
 export class LoginEmailComponent implements OnInit, OnDestroy {

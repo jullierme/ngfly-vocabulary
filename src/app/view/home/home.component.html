@@ -1,25 +1,24 @@
-<div class="form-container" id="toolbar">
-    <header [@fallIn]="state">
+<div class="container">
+    <div class="toolbar" [@fallIn]="state">
         <button (click)="logout()"
-                class="basic-btn">
+                class="btn-big basic-btn">
             Logout
         </button>
-    </header>
+    </div>
 
     <div id="page" [@moveInLeft]="state">
-        <!--<h2>Hey {{ name }}!</h2>
+        <h2>Hey {{ name }}!</h2>
 
         <h4>your email is {{email}}</h4>
-        <img src="../../../assets/images/filler.png"/>-->
 
         <button (click)="newGroup()"
-                class="basic-btn">
+                class="btn-big basic-btn">
             Add new group
         </button>
 
         <button (click)="newWord()"
-                class="basic-btn">
-            Add new group
+                class="btn-big basic-btn">
+            Add new word
         </button>
 
     </div>

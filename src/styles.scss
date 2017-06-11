@@ -1,9 +1,27 @@
+@charset "UTF-8";
+
+html {
+    font-family: 'Roboto' !important;
+}
 body {
-    background: #E2E4E6;
-    padding-top: 4em;
+    background-color: #E2E4E6;
+    font-family: 'Roboto' !important;
 }
 
-.form-container {
+h1, h2, h3, h4, h5, h6, button, input, optgroup, select, textarea {
+    font-family: 'Roboto' !important;
+}
+
+.container {
+    padding: 0;
+    background-color: #FFF;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.form-auth-container {
     background: white;
     padding: 3.5em;
     width: 500px;
@@ -12,7 +30,11 @@ body {
     margin-left: -250px;
 }
 
-button {
+form {
+    width: 100%;
+}
+
+.btn-big {
     padding: 1.2em;
     width: 100%;
     cursor: pointer;
@@ -35,10 +57,6 @@ input.txt {
     padding: 1.3em 1em;
     font-size: 1.3em;
     border: 1px solid #BBBBBB;
-}
-
-h2 {
-    margin: 1.7em 0 .9em 0;
 }
 
 .alc {
@@ -95,18 +113,12 @@ h2 {
     }
 }
 
-@media (max-width: 600px) {
-    body {
-        padding-top: 1.2em;
-    }
+.toolbar {
+    background: #3B8598;
+    width: 100%;
+    display: block;
+}
 
-    .form-container {
-        padding: 1.2em;
-        width: 90%;
-        margin-left: -45%;
-    }
-
-    button {
-        font-size: 1em;
-    }
+li {
+    font-size: 1.3em;
 }

@@ -6,7 +6,7 @@ import {AuthService} from '../../service/auth.service';
 @Component({
     selector: 'app-reset-password',
     templateUrl: './reset-password.component.html',
-    styleUrls: ['./reset-password.component.css'],
+    styleUrls: ['./reset-password.component.scss'],
     animations: [moveIn(), fallIn()]
 })
 export class ResetPasswordComponent implements OnInit, AfterViewInit {
@@ -40,7 +40,6 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
                     setTimeout(() => {
                         this.router.navigate(['/login-email'], {queryParams: {email: this.user.email}});
                     }, 5000);
-
                 }).catch((err) => this.error = err)
         }
     }

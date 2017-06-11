@@ -1,15 +1,17 @@
-<div class="form-container" id="toolbar">
-    <header [@fallIn]="state">
-        Groups
-    </header>
+<div class="container">
+    <div class="toolbar" [@fallIn]="state">
+        <button routerLink="/home"
+                class="btn-big basic-btn">
+            Home
+        </button>
+    </div>
 
     <div id="page" [@moveInLeft]="state">
         <form #formData="ngForm"
               (ngSubmit)="onSubmit(formData)">
-
             <input placeholder="Group name..."
-                   [(ngModel)]="group"
-                   name="group"
+                   name="name"
+                   ngModel
                    class="txt"
                    required
                    maxlength="50"
@@ -17,14 +19,13 @@
 
             <button type="submit"
                     [disabled]="!formData.valid"
-                    class="basic-btn">
+                    class="btn-big basic-btn">
                 Add
             </button>
-
         </form>
 
         <ul>
-            <li *ngFor="let item of items | async">
+            <li *ngFor="let item of firebasedbService.dictionary | async">
                 {{ item.name }}
             </li>
         </ul>

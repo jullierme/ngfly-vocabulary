@@ -19,6 +19,9 @@ import {FormsModule} from '@angular/forms';
 import {GroupComponent} from './view/group/group.component';
 import {ResetPasswordComponent} from './view/reset-password/reset-password.component';
 import {AuthService} from './service/auth.service';
+import {FirebasedbService} from './service/firebasedb.service';
+import {MdButtonModule, MdCardModule} from '@angular/material';
+import { WordComponent } from './view/word/word.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +31,8 @@ import {AuthService} from './service/auth.service';
         SignupComponent,
         HomeComponent,
         GroupComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        WordComponent
     ],
     imports: [
         BrowserModule,
@@ -37,11 +41,15 @@ import {AuthService} from './service/auth.service';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
         AngularFireAuthModule,
-        routes
+        routes,
+
+        MdCardModule,
+        MdButtonModule
     ],
     providers: [
         AuthGuard,
-        AuthService
+        AuthService,
+        FirebasedbService
     ],
     bootstrap: [AppComponent]
 })

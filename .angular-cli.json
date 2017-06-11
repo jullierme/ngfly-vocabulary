@@ -20,7 +20,8 @@
             "prefix": "app",
             "styles": [
                 "../node_modules/foundation-sites/dist/css/foundation-flex.css",
-                "styles.css"
+                "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+                "styles.scss"
             ],
             "scripts": [
                 "../node_modules/web-animations-js/web-animations.min.js"
@@ -54,7 +55,8 @@
         }
     },
     "defaults": {
-        "styleExt": "css",
-        "component": {}
+        "styleExt": "scss",
+        "component": {
+        }
     }
 }

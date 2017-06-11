@@ -1,16 +1,16 @@
-<div class="form-container">
-    <img src="../../../assets/images/lock.svg" id="lock">
-
+<div class="form-auth-container">
     <span class="error" *ngIf="error">{{ error }}</span>
 
-    <button (click)="loginFb()"
+    <button class="btn-big"
+            (click)="loginFacebook()"
             id="fb">
         Login With Facebook
     </button>
 
     <br>
 
-    <button (click)="loginGoogle()"
+    <button class="btn-big"
+            (click)="loginGoogle()"
             id="google">
         Login With Google
     </button>
@@ -22,7 +22,8 @@
         Login With GitHub
     </button>-->
 
-    <button routerLink="/login-email"
+    <button class="btn-big"
+            routerLink="/login-email"
             id="email">
         Email
     </button>
