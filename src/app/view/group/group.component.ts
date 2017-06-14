@@ -1,5 +1,5 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
-import {fallIn, moveIn, moveInLeft} from '../../router/router.animations';
+import {AfterViewInit, Component, ElementRef, HostBinding, OnInit, ViewChild} from '@angular/core';
+import {fallIn, moveIn, moveInLeft} from '../../animation/app.animations';
 import {FirebasedbService} from '../../service/firebasedb.service';
 import {NgForm} from '@angular/forms';
 
@@ -9,22 +9,49 @@ import {NgForm} from '@angular/forms';
     styleUrls: ['./group.component.scss'],
     animations: [moveIn(), fallIn(), moveInLeft()]
 })
-export class GroupComponent implements OnInit {
+export class GroupComponent implements OnInit, AfterViewInit {
     @HostBinding('@moveIn') get moveIn() {
         return '';
     }
 
+    @ViewChild('iGroup') iGroup: ElementRef;
+
     state = '';
+    entity: any = {};
 
     constructor(public firebasedbService: FirebasedbService) {
     }
 
     ngOnInit() {
+        this.entity = {};
+    }
+
+    ngAfterViewInit() {
+        this.iGroup.nativeElement.focus();
     }
 
     onSubmit(formData: NgForm) {
         if (formData.valid) {
-            this.firebasedbService.dictionary.push(formData.value);
+            if (!this.entity.$key) {
+                this.firebasedbService.dictionary.push(this.entity);
+            } else {
+                this.firebasedbService.dictionary.update(this.entity.$key, this.entity);
+            }
+            this.entity = {};
+
+            this.iGroup.nativeElement.focus();
         }
+    }
+
+    remove(item) {
+        this.firebasedbService.dictionary.remove(item);
+
+        this.iGroup.nativeElement.focus();
+    }
+
+    edit(item) {
+        this.entity = item;
+
+        this.iGroup.nativeElement.focus();
     }
 }

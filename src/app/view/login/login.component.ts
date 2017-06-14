@@ -1,6 +1,6 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {moveIn} from '../../router/router.animations';
+import {moveIn} from '../../animation/app.animations';
 import {AuthService} from '../../service/auth.service';
 import * as firebase from 'firebase/app';
 

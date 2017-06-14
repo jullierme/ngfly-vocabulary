@@ -1,6 +1,6 @@
-import {Component, ElementRef, HostBinding, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostBinding, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {fallIn, moveIn} from '../../router/router.animations';
+import {fallIn, moveIn} from '../../animation/app.animations';
 import {AuthService} from '../../service/auth.service';
 
 @Component({
@@ -9,11 +9,12 @@ import {AuthService} from '../../service/auth.service';
     styleUrls: ['./login-email.component.scss'],
     animations: [moveIn(), fallIn()]
 })
-export class LoginEmailComponent implements OnInit, OnDestroy {
+export class LoginEmailComponent implements OnInit, OnDestroy, AfterViewInit {
     @HostBinding('@moveIn') get moveIn() {
         return '';
     }
 
+    @ViewChild('iPassoword') iEmail: ElementRef;
     @ViewChild('iPassoword') iPassoword: ElementRef;
 
     state = '';
@@ -40,6 +41,10 @@ export class LoginEmailComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.subscribeParams.unsubscribe();
         this.subscribeHome.unsubscribe();
+    }
+
+    ngAfterViewInit() {
+        this.iEmail.nativeElement.focus();
     }
 
     setEmailDefault() {

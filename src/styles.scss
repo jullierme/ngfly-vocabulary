@@ -117,8 +117,16 @@ input.txt {
     background: #3B8598;
     width: 100%;
     display: block;
+
+    a{
+        margin: 0;
+    }
 }
 
 li {
     font-size: 1.3em;
+}
+
+.button {
+    margin: 0;
 }

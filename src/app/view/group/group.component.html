@@ -1,34 +1,58 @@
-<div class="container">
+<div class="form-auth-container">
     <div class="toolbar" [@fallIn]="state">
-        <button routerLink="/home"
-                class="btn-big basic-btn">
+        <a routerLink="/home"
+           class="button warning large">
             Home
-        </button>
+        </a>
     </div>
 
     <div id="page" [@moveInLeft]="state">
         <form #formData="ngForm"
               (ngSubmit)="onSubmit(formData)">
-            <input placeholder="Group name..."
-                   name="name"
-                   ngModel
-                   class="txt"
-                   required
-                   maxlength="50"
-                   autofocus>
+            <div class="input-group">
 
-            <button type="submit"
-                    [disabled]="!formData.valid"
-                    class="btn-big basic-btn">
-                Add
-            </button>
+                <input placeholder="Group name..."
+                       name="name"
+                       class="input-group-field"
+                       required
+                       maxlength="50"
+                       #iGroup
+                       [(ngModel)]="entity.name">
+
+                <div class="input-group-button">
+                    <button type="submit"
+                            [disabled]="!formData.valid"
+                            class="button large">
+                        <span *ngIf="!entity.$key">Add</span>
+                        <span *ngIf="!!entity.$key">Save</span>
+                    </button>
+                </div>
+            </div>
         </form>
 
-        <ul>
-            <li *ngFor="let item of firebasedbService.dictionary | async">
-                {{ item.name }}
-            </li>
-        </ul>
+        <table>
+            <tr>
+                <th></th>
+                <td style="width: 30px"></td>
+            </tr>
+            <tr *ngFor="let item of firebasedbService.dictionary | async">
+                <td>{{ item.name }}</td>
+                <td style="width: 60px; padding: 0;">
+                    <span>
+                        <button class="button alert tiny"
+                                (click)="remove(item)"
+                                title="Remove group">
+                        X
+                        </button>
+                        <button class="button tiny"
+                                (click)="edit(item)"
+                                title="Edit group name">
+                        E
+                        </button>
+                    </span>
+                </td>
+            </tr>
+        </table>
     </div>
 
 </div>

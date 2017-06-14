@@ -1,26 +1,22 @@
-<div class="container">
+<div class="form-auth-container">
     <div class="toolbar" [@fallIn]="state">
-        <button (click)="logout()"
-                class="btn-big basic-btn">
+        <a (click)="logout()"
+           class="button warning large">
             Logout
-        </button>
+        </a>
     </div>
 
     <div id="page" [@moveInLeft]="state">
-        <h2>Hey {{ name }}!</h2>
 
-        <h4>your email is {{email}}</h4>
+        <div class="expanded button-group">
+            <a (click)="newGroup()" class="button large">Add new group</a>
+            <a (click)="newWord()" class="button large">Add new word</a>
+        </div>
+    </div>
 
-        <button (click)="newGroup()"
-                class="btn-big basic-btn">
-            Add new group
-        </button>
-
-        <button (click)="newWord()"
-                class="btn-big basic-btn">
-            Add new word
-        </button>
-
+    <div class="welcome">
+        <h5>Welcome {{ name }}! </h5>
+        <small>{{email}}</small>
     </div>
 
 </div>

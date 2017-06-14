@@ -15,13 +15,12 @@ import {HomeComponent} from './view/home/home.component';
 import {AuthGuard} from './guard/auth.guard';
 import {routes} from './router/app.routes';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {GroupComponent} from './view/group/group.component';
 import {ResetPasswordComponent} from './view/reset-password/reset-password.component';
 import {AuthService} from './service/auth.service';
 import {FirebasedbService} from './service/firebasedb.service';
-import {MdButtonModule, MdCardModule} from '@angular/material';
-import { WordComponent } from './view/word/word.component';
+import {WordComponent} from './view/word/word.component';
 
 @NgModule({
     declarations: [
@@ -41,10 +40,8 @@ import { WordComponent } from './view/word/word.component';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
         AngularFireAuthModule,
-        routes,
-
-        MdCardModule,
-        MdButtonModule
+        ReactiveFormsModule,
+        routes
     ],
     providers: [
         AuthGuard,

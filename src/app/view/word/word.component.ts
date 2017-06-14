@@ -1,8 +1,7 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
-import {fallIn, moveIn, moveInLeft} from '../../router/router.animations';
+import {AfterViewInit, Component, ElementRef, HostBinding, OnInit, ViewChild} from '@angular/core';
+import {fallIn, moveIn, moveInLeft} from '../../animation/app.animations';
 import {FirebasedbService} from '../../service/firebasedb.service';
 import {FirebaseListObservable} from 'angularfire2/database';
-import {AuthService} from '../../service/auth.service';
 
 @Component({
     selector: 'app-word',
@@ -10,25 +9,38 @@ import {AuthService} from '../../service/auth.service';
     styleUrls: ['./word.component.scss'],
     animations: [moveIn(), fallIn(), moveInLeft()]
 })
-export class WordComponent implements OnInit {
+export class WordComponent implements OnInit, AfterViewInit {
     @HostBinding('@moveIn') get moveIn() {
         return '';
     }
 
+    @ViewChild('iGroup') iGroup: ElementRef;
+    @ViewChild('iWord') iWord: ElementRef;
+
+    entity: any = {};
     state = '';
 
     wordList: FirebaseListObservable<any[]>;
-    phrase: FirebaseListObservable<any[]>;
 
     constructor(public firebasedbService: FirebasedbService) {
     }
 
     ngOnInit() {
+        this.entity = {};
+    }
+
+    ngAfterViewInit() {
+        this.iGroup.nativeElement.focus();
     }
 
     onSubmit(formData) {
         if (formData.valid) {
-            this.wordList.push(formData.value);
+            if (!this.entity.$key) {
+                this.wordList.push(this.entity);
+            } else {
+                this.wordList.update(this.entity.$key, this.entity);
+            }
+            this.newWord();
         }
     }
 
@@ -36,7 +48,23 @@ export class WordComponent implements OnInit {
         this.wordList = this.firebasedbService.getWord($key);
     }
 
-    addFhrase(pfrase) {
+    remove(item) {
+        this.wordList.remove(item);
 
+        this.iWord.nativeElement.focus();
+    }
+
+    edit(item) {
+        this.entity = item;
+
+        this.iWord.nativeElement.focus();
+    }
+
+    newWord() {
+        this.entity = {
+            dictionaryId: this.entity.dictionaryId
+        };
+
+        this.iWord.nativeElement.focus();
     }
 }

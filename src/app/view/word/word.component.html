@@ -1,85 +1,72 @@
-<div class="container">
+<div class="form-auth-container">
     <div class="toolbar" [@fallIn]="state">
-        <button routerLink="/home"
-                class="btn-big basic-btn">
+        <a routerLink="/home"
+           class="button warning large">
             Home
-        </button>
+        </a>
     </div>
 
-    <div id="page" [@moveInLeft]="state">
+    <div id="page" [@moveInLeft]="state"
+    >
         <form #formData="ngForm"
               (ngSubmit)="onSubmit(formData)">
-
+            <div class="row">
+                <div class="medium-12 columns">
+                    <select [(ngModel)]="entity.dictionaryId"
+                            name="dictionaryId"
+                            (change)="setWordList($event.currentTarget.value)"
+                            required
+                            class="input-group-field"
+                            [disabled]="!!entity.$key"
+                            #iGroup>
+                        <option *ngFor="let item of firebasedbService.dictionary | async"
+                                value="{{item.$key}}">
+                            {{item.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
             <div class="row">
                 <div class="medium-6 columns">
-                    <label>Group *
-                        <select ngModel
-                                name="dictionaryId"
-                                (change)="setWordList($event.currentTarget.value)"
-                                required>
-                            <option *ngFor="let item of firebasedbService.dictionary | async"
-                                    value="{{item.$key}}">
-                                {{item.name}}
-                            </option>
-                        </select>
-                    </label>
+                    <input type="text"
+                           placeholder="Word"
+                           [(ngModel)]="entity.word"
+                           name="word"
+                           required
+                           #iWord>
                 </div>
                 <div class="medium-6 columns">
-                    <button type="submit"
-                            [disabled]="!formData.valid"
-                            class="btn-big basic-btn">
-                        Add
-                    </button>
+                    <input type="text"
+                           placeholder="Translation"
+                           [(ngModel)]="entity.translate"
+                           name="translate"
+                           required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <textarea placeholder="Description"
+                              [(ngModel)]="entity.description"
+                              name="description">
+                    </textarea>
                 </div>
             </div>
 
             <div class="row">
-                <div class="medium-4 columns">
-                    <label>Word *
-                        <input placeholder="Word"
-                               ngModel
-                               name="word"
-                               class="txt"
-                               required
-                               autofocus>
-                    </label>
-                </div>
-
-                <div class="medium-4 columns">
-                    <label>Sound *
-                        <input placeholder="Sound"
-                               ngModel
-                               name="sound"
-                               class="txt"
-                               required>
-                    </label>
-                </div>
-
-                <div class="medium-4 columns">
-                    <label>Translation *
-                        <input placeholder="Translation"
-                               ngModel
-                               name="translate"
-                               class="txt"
-                               required>
-                    </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="medium-8 columns">
-                    <label>Fhrase
-                        <input placeholder="Fhrase"
-                               class="txt"
-                               #iFrase>
-                    </label>
-                </div>
-                <div class="medium-6 columns">
-                    <button type="button"
-                            [disabled]="!iFrase.value"
-                            class="btn-big basic-btn"
-                            (click)="addFhrase(iFrase.value)">
-                        Add
-                    </button>
+                <div class="medium-12 columns">
+                    <div class="expanded button-group">
+                        <button type="submit"
+                                [disabled]="!formData.valid"
+                                class="button">
+                            <span *ngIf="!entity.$key">Add</span>
+                            <span *ngIf="!!entity.$key">Save</span>
+                        </button>
+                        <button (click)="newWord()"
+                                class="button warning"
+                                [disabled]="!entity.$key">
+                            New
+                        </button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -87,13 +74,30 @@
         <table>
             <tr>
                 <th>Word</th>
-                <th>Sound</th>
                 <th>Translation</th>
+                <th>Description</th>
+                <td style="width: 60px">
+                </td>
             </tr>
+
             <tr *ngFor="let item of wordList | async">
-                <td>{{ item.word }}</td>
-                <td>{{ item.sound }}</td>
-                <td>{{ item.translate }}</td>
+                <td><span [innerText]="item.word"></span></td>
+                <td><span [innerText]="item.translate"></span></td>
+                <td><span [innerText]="item.description"></span></td>
+                <td style="width: 60px; padding: 0;">
+                    <span>
+                        <button class="button alert tiny"
+                                (click)="remove(item)"
+                                title="Remove word">
+                        X
+                        </button>
+                        <button class="button tiny"
+                                (click)="edit(item)"
+                                title="Edit word">
+                        E
+                        </button>
+                    </span>
+                </td>
             </tr>
         </table>
     </div>

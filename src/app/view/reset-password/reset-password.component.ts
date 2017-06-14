@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, HostBinding, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {fallIn, moveIn} from '../../router/router.animations';
+import {fallIn, moveIn} from '../../animation/app.animations';
 import {AuthService} from '../../service/auth.service';
 
 @Component({

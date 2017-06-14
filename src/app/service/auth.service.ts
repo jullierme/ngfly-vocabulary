@@ -12,7 +12,10 @@ export class AuthService {
         this.angularFireAuth.authState
             .subscribe(auth => {
                 this.user = auth;
-                this.uid = this.user.uid;
+
+                if (this.user) {
+                    this.uid = this.user.uid;
+                }
             });
     }
 

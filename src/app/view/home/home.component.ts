@@ -1,6 +1,6 @@
 import {Component, HostBinding, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
-import {fallIn, moveIn, moveInLeft} from '../../router/router.animations';
+import {fallIn, moveIn, moveInLeft} from '../../animation/app.animations';
 import {AuthService} from '../../service/auth.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
     @HostBinding('@moveIn') get moveIn() {
         return '';
     }
+
     name = '';
     email = '';
     state = '';
@@ -32,17 +33,15 @@ export class HomeComponent implements OnInit {
         if (!user) {
             return;
         }
-        if (!user.email) {
-            const authUser = Object.keys(window.localStorage).filter(item => {
-                return item.startsWith('firebase:authUser')
-            });
-            const storage = JSON.parse(localStorage.getItem(authUser[0]));
-            const providerData = storage['providerData'][0];
-            this.email = providerData['email'];
-        } else {
-            this.email = user.email;
-        }
-        this.name = user.displayName;
+
+        const authUser = Object.keys(window.localStorage).filter(item => {
+            return item.startsWith('firebase:authUser')
+        });
+        const storage = JSON.parse(localStorage.getItem(authUser[0]));
+        const providerData = storage['providerData'][0];
+
+        this.email = providerData['email'];
+        this.name = providerData['displayName'];
     }
 
     logout() {
