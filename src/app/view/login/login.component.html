@@ -1,17 +1,22 @@
 <div class="form-auth-container">
     <span class="error" *ngIf="error">{{ error }}</span>
 
-    <button class="btn-big"
-            (click)="loginFacebook()"
-            id="fb">
+    <button class="btn-big facebook"
+            (click)="loginFacebook()">
         Login With Facebook
     </button>
 
     <br>
 
-    <button class="btn-big"
-            (click)="loginGoogle()"
-            id="google">
+    <button class="btn-big twitter"
+            (click)="loginTwitter()">
+        Login With Twitter
+    </button>
+
+    <br>
+
+    <button class="btn-big google"
+            (click)="loginGoogle()">
         Login With Google
     </button>
 

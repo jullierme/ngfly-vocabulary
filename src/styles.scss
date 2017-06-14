@@ -3,6 +3,7 @@
 html {
     font-family: 'Roboto' !important;
 }
+
 body {
     background-color: #E2E4E6;
     font-family: 'Roboto' !important;
@@ -118,7 +119,7 @@ input.txt {
     width: 100%;
     display: block;
 
-    a{
+    a {
         margin: 0;
     }
 }
@@ -129,4 +130,33 @@ li {
 
 .button {
     margin: 0;
+}
+
+.facebook {
+    background: #3B5998 url('./assets/images/facebook.svg') no-repeat 14px 10px;
+    background-size: 47px;
+    color: #fff;
+}
+
+.google {
+    border: 1px solid #95989A;
+    background: #fff url('./assets/images/google.svg') no-repeat 25px;
+    background-size: 25px;
+}
+
+.twitter {
+    background: #55acee url('./assets/images/twitter.svg') no-repeat 14px 10px;
+    background-size: 47px;
+    color: #fff;
+}
+
+.github {
+    border: 1px solid #95989A;
+    background: #444 url('./assets/images/github.svg') no-repeat 25px;
+    background-size: 25px;
+    color: #FFF;
+}
+
+.form-auth-container {
+    padding: 3.5em;
 }

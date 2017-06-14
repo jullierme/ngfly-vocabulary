@@ -14,7 +14,7 @@ export class LoginEmailComponent implements OnInit, OnDestroy, AfterViewInit {
         return '';
     }
 
-    @ViewChild('iPassoword') iEmail: ElementRef;
+    @ViewChild('iEmail') iEmail: ElementRef;
     @ViewChild('iPassoword') iPassoword: ElementRef;
 
     state = '';

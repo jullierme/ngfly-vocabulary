@@ -9,8 +9,12 @@
     <div id="page" [@moveInLeft]="state">
 
         <div class="expanded button-group">
-            <a (click)="newGroup()" class="button large">Add new group</a>
-            <a (click)="newWord()" class="button large">Add new word</a>
+            <a routerLink="/group"  class="button large">Add new group</a>
+            <a routerLink="/word"  class="button large">Add new word</a>
+        </div>
+
+        <div class="expanded button-group">
+            <a routerLink="/link-credential"  class="button large">Link social credentials</a>
         </div>
     </div>
 

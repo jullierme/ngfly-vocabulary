@@ -48,12 +48,4 @@ export class HomeComponent implements OnInit {
         this.authService.signOut()
             .then(() => this.router.navigateByUrl('/login'));
     }
-
-    newWord() {
-        this.router.navigateByUrl('/word');
-    }
-
-    newGroup() {
-        this.router.navigateByUrl('/group');
-    }
 }

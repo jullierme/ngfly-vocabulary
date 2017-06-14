@@ -47,6 +47,12 @@ export class LoginComponent implements OnInit {
             .catch(error => this.signInWithPopupFault(error));
     }
 
+    loginTwitter() {
+        this.authService.loginTwitter()
+            .then(success => this.signInWithPopupResult(success))
+            .catch(error => this.signInWithPopupFault(error));
+    }
+
     signInWithPopupResult(success) {
         this.authService.accessToken = success.credential.accessToken;
         this.router.navigate(['/home']);

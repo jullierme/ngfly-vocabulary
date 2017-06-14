@@ -9,6 +9,7 @@ import {LoginEmailComponent} from '../view/login-email/login-email.component';
 import {GroupComponent} from '../view/group/group.component';
 import {ResetPasswordComponent} from '../view/reset-password/reset-password.component';
 import {WordComponent} from '../view/word/word.component';
+import {LinkCredentialComponent} from '../view/link-credential/link-credential.component';
 
 export const router: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -18,7 +19,8 @@ export const router: Routes = [
     {path: 'login-email', component: LoginEmailComponent},
     {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
     {path: 'group', component: GroupComponent, canActivate: [AuthGuard]},
-    {path: 'word', component: WordComponent, canActivate: [AuthGuard]}
+    {path: 'word', component: WordComponent, canActivate: [AuthGuard]},
+    {path: 'link-credential', component: LinkCredentialComponent, canActivate: [AuthGuard]}
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostBinding, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {fallIn, moveIn} from '../../animation/app.animations';
 import {AuthService} from '../../service/auth.service';
@@ -9,16 +9,22 @@ import {AuthService} from '../../service/auth.service';
     styleUrls: ['./signup.component.scss'],
     animations: [moveIn(), fallIn()]
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, AfterViewInit {
     @HostBinding('@moveIn') get moveIn() {
         return '';
     }
 
-    state = '';
+    @ViewChild('iEmail') iEmail: ElementRef;
+
+    state: any = '';
     error: any;
     user: any = {};
 
     ngOnInit() {
+    }
+
+    ngAfterViewInit() {
+        this.iEmail.nativeElement.focus();
     }
 
     constructor(public authService: AuthService, private router: Router) {

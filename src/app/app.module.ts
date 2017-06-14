@@ -21,6 +21,7 @@ import {ResetPasswordComponent} from './view/reset-password/reset-password.compo
 import {AuthService} from './service/auth.service';
 import {FirebasedbService} from './service/firebasedb.service';
 import {WordComponent} from './view/word/word.component';
+import {LinkCredentialComponent} from './view/link-credential/link-credential.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import {WordComponent} from './view/word/word.component';
         HomeComponent,
         GroupComponent,
         ResetPasswordComponent,
-        WordComponent
+        WordComponent,
+        LinkCredentialComponent
     ],
     imports: [
         BrowserModule,

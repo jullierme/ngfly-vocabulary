@@ -1,25 +1,6 @@
-#fb {
-    background: #3B5998 url('../../../assets/images/facebook.svg') no-repeat 14px 6px;
-    background-size: 47px;
-    color: #fff;
-}
-
-#google {
-    border: 1px solid #95989A;
-    background: #fff url('../../../assets/images/google.svg') no-repeat 25px;
-    background-size: 25px;
-}
-
 #email {
     background: #ECECEC url('../../../assets/images/email.svg') no-repeat 25px;
     background-size: 25px;
-}
-
-#github {
-    border: 1px solid #95989A;
-    background: #444 url('../../../assets/images/github.svg') no-repeat 25px;
-    background-size: 25px;
-    color: #FFF;
 }
 
 @media (max-width: 600px) {
@@ -31,20 +12,9 @@
         width: 90%;
         margin-left: -45%;
     }
-
-    #fb {
-        background: #3B5998;
-    }
-
-    #google {
-        background: #fff;
-    }
-
-    #github {
-        background: #444;
-    }
-
-    #email {
-        background: #ECECEC;
-    }
 }
+
+.form-auth-container {
+    padding: 3.5em;
+}
+
