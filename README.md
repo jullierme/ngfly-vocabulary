@@ -1,5 +1,7 @@
 # NgflyVocabulary
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jullierme/ngfly-vocabulary.svg)](https://greenkeeper.io/)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
 
 ## Development server
